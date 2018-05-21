@@ -2,15 +2,19 @@
   <mat-sidenav #sidenav align="start" [mode]="'over'" [opened]="false" class="cw-sidenav">
     <div>
       <div fxLayout="column" fxLayoutAlign="center center" class="cw-sidenav-user-area">
+        <div>
         <mat-icon class="cw-sidenav-avatar" color="primary">account_circle</mat-icon>
       </div>
       <div>
         <span>MINÄTEINSEN</span>
       </div>
     </div>
+    </div>
+    <div>
     <span>Sidenav content</span>
+    </div>
   </mat-sidenav>
-  <div>
+<div fxFlexFill class="cw-sidenav-content">
     <mat-toolbar color="primary">
 
 
@@ -23,5 +27,5 @@
     <div class="cw-app-container">
       <router-outlet></router-outlet>
     </div>
-  </div>
+</div>
 </mat-sidenav-container>

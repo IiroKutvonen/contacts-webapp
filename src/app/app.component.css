@@ -25,3 +25,7 @@
   background: aquamarine;
   padding: 8px;
 }
+
+.cw-sidenav-content {
+  overflow: hidden;
+}

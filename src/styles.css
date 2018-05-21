@@ -5,6 +5,16 @@
 html, body{
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  heights: 100%;
+  height: 100%;
   width: 100%;
+}
+
+.cw-fab {
+  position: absolute !important;
+  bottom: 20px;
+  right: 20px;
+}
+
+.cw-card-layout {
+  margin: 24px
 }

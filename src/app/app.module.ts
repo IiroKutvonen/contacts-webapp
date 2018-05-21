@@ -18,6 +18,7 @@ import {NgPipesModule} from 'ngx-pipes';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
+  {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/:id', component: ContactDetailComponent},
   {path: '', redirectTo: '/contacts', pathMatch: 'full'}
 ];
