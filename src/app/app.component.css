@@ -5,7 +5,23 @@
   overflow: hidden;
 }
 
+.cw-sidenav {
+  width: 200px;
+
+}
+
 .cw-app-container {
   height: 100%;
   overflow: auto;
+}
+
+.cw-sidenav-avatar {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+}
+
+.cw-sidenav-user-area {
+  background: aquamarine;
+  padding: 8px;
 }

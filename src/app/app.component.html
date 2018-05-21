@@ -1,10 +1,18 @@
 <mat-sidenav-container class="cw-sidenav-container">
-  <mat-sidenav #sidenav align="start" [mode]="'over'" [opened]="false">
+  <mat-sidenav #sidenav align="start" [mode]="'over'" [opened]="false" class="cw-sidenav">
+    <div>
+      <div fxLayout="column" fxLayoutAlign="center center" class="cw-sidenav-user-area">
+        <mat-icon class="cw-sidenav-avatar" color="primary">account_circle</mat-icon>
+      </div>
+      <div>
+        <span>MINÄTEINSEN</span>
+      </div>
+    </div>
     <span>Sidenav content</span>
   </mat-sidenav>
   <div>
     <mat-toolbar color="primary">
-      
+
 
       <button mat-icon-button (click)="sidenav.toggle()">
 
