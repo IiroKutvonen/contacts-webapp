@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
@@ -15,6 +15,7 @@ export class ContactDetailComponent implements OnInit {
 
   contact: Contact;
   editingEnabled: boolean;
+  contactId: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private contactService: ContactService,
               private toolbar: ToolbarService) {
@@ -25,17 +26,17 @@ export class ContactDetailComponent implements OnInit {
   ngOnInit() {
 
 
-    const contactId = this.route.snapshot.paramMap.get('id');
+    this.contactId = this.route.snapshot.paramMap.get('id');
     let toolbarActions: ToolbarAction[];
 
-    if (contactId == null) {
+    if (this.contactId == null) {
       this.editingEnabled = true;
       toolbarActions = [];
     } else {
 
       toolbarActions = [new ToolbarAction(this.onEdit.bind(this), 'edit')];
 
-      this.contactService.getContactById(contactId).subscribe(response => {
+      this.contactService.getContactById(this.contactId).subscribe(response => {
         this.contact = response;
         console.log(this.contact);
       }, error => {
@@ -44,15 +45,36 @@ export class ContactDetailComponent implements OnInit {
         this.router.navigate(['/contacts']);
       });
     }
-    this.toolbar.toolbarOptions.next(new ToolbarOptions( 'Contact', toolbarActions));
-    }
-onNavigateBack(): void {
+    this.toolbar.toolbarOptions.next(
+      new ToolbarOptions(
+        'Contact', toolbarActions
+      ));
+
+  }
+
+  onNavigateBack(): void {
     this.router.navigate(['/contacts']);
-}
-onSave(): void {
-    console.log('TODO:Save');
-}
-onEdit(): void {
+  }
+
+  onSave(): void {
+    if (this.contactId == null) {
+      this.editingEnabled = false;
+      this.contactService.createContact(this.contact).subscribe(response => {
+        this.contact = response;
+        const toolbarAction: ToolbarAction[] = [new ToolbarAction(this.onEdit.bind(this), 'edit')];
+
+      });
+
+    } else {
+      this.editingEnabled = false;
+      this.contactService.updateContact(this.contact).subscribe(response => {
+        this.contact = response;
+
+      });
+    }
+  }
+
+  onEdit(): void {
     this.editingEnabled = !this.editingEnabled;
-}
+  }
 }
