@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
+import {ToolbarService} from '../../ui/toolbar/toolbar.service';
+import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
+import {ToolbarAction} from '../../ui/toolbar/toolbar-action';
 
 @Component({
   selector: 'cw-contact-detail',
@@ -12,13 +15,18 @@ export class ContactDetailComponent implements OnInit {
 
 contact: Contact;
 
-  constructor(private router: Router, private route: ActivatedRoute, private contactService: ContactService) {
+  constructor(private router: Router, private route: ActivatedRoute, private contactService: ContactService,
+              private toolbar: ToolbarService) {
     this.contact = new Contact();
   }
 
   ngOnInit() {
+    this.toolbar.toolbarOptions.next(new ToolbarOptions( 'Contact', [
+      new ToolbarAction(this.onEdit, 'edit')
+    ]));
+
     const contactId = this.route.snapshot.paramMap.get('id');
-    console.log(contactId);
+
     if (contactId == null) {
       return;
     }
@@ -36,5 +44,8 @@ onNavigateBack(): void {
 }
 onSave(): void {
     console.log('TODO:Save');
+}
+onEdit(): void {
+    console.log('TODO: Edit');
 }
 }
