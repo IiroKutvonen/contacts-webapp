@@ -36,4 +36,7 @@ post(contact): Observable<Contact> {
     return response as Contact;
   }));
 }
+delete(contact): Observable<any> {
+    return this.httpClient.delete(this.url + '/' + contact.id);
+}
 }

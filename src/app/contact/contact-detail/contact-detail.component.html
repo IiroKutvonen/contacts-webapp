@@ -1,8 +1,10 @@
 <mat-card class="cw-card-layout">
-  <button mat-icon-button (click)="onNavigateBack()" color="primary">
-    <mat-icon>arrow_back</mat-icon>
-    Back
-  </button>
+  <mat-card-actions *ngIf="editingEnabled && contactId" align="end">
+    <button mat-icon-button (click)="onDelete()" color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+    </mat-card-actions>
+
   <div fxLayout="row">
     <div fxLayout="column" class="cw-contact-detail-fields">
       <mat-form-field floatPlaceholder="auto">
@@ -56,8 +58,9 @@
       </mat-form-field>
     </div>
   </div>
+
+
 </mat-card>
-<
 <button mat-fab (click)="onSave()" class="cw-fab" [disabled]="!editingEnabled">
   <mat-icon>check</mat-icon>
 </button>
