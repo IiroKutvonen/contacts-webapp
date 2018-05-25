@@ -19,17 +19,19 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toolbar.toolbarOptions.next(new ToolbarOptions( false, 'Contacts', []));
+    this.toolbar.setToolBarOptions(new ToolbarOptions(false, 'Contacts', []));
     this.contactService.getContacts().subscribe(response => {
       this.contacts = response;
       console.log(this.contacts);
     });
   }
+
   onContactSelect(contact): void {
 
     this.router.navigate(['/contacts', contact.id]);
-}
-onCreateNew(): void {
-    this.router.navigate( ['/contacts/new']);
-}
+  }
+
+  onCreateNew(): void {
+    this.router.navigate(['/contacts/new']);
+  }
 }
