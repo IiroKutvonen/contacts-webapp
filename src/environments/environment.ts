@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpointUrl: 'http://localhost:53629/api/contacts'
+  apiEndpointUrl: 'http://iironcontactswebapi.azurewebsites.net'
 };
 
 /*
